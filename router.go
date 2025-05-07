@@ -22,5 +22,11 @@ func RouterSetup() *gin.Engine {
 		mapGroup.POST("/*path", handler.SendFile)
 	}
 
+	adminGroup := router.Group("/admin")
+	{
+		adminGroup.GET("/upload", handler.UploadPage)
+		adminGroup.POST("/upload", handler.UploadHandler)
+	}
+
 	return router
 }

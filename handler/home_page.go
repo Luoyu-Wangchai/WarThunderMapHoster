@@ -8,7 +8,7 @@ import (
 
 func MainPage(ctx *gin.Context) {
 	ctx.Header("Content-Type", "text/html")
-	ctx.HTML(http.StatusOK, "index.tmpl", gin.H{
+	ctx.HTML(http.StatusOK, "input.tmpl", gin.H{
 		"title": "authenticator",
 	})
 

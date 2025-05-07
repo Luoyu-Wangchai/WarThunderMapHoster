@@ -14,6 +14,19 @@ func UploadPage(ctx *gin.Context) {
 }
 
 func UploadHandler(ctx *gin.Context) {
+	passwd := ctx.PostForm("password")
+
+	if passwd != config.Cfg.AdminPasswd {
+
+		ctx.HTML(http.StatusForbidden, "message.tmpl", gin.H{
+			"title":       "Wrong Password",
+			"message":     "Wrong Password",
+			"description": "",
+			"color":       "red",
+		})
+		return
+	}
+
 	file, err := ctx.FormFile("file")
 	if err != nil {
 		ctx.HTML(http.StatusBadRequest, "message.tmpl", gin.H{

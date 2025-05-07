@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 	"thunder_hoster/config"
@@ -19,7 +20,7 @@ func SendFile(ctx *gin.Context) {
 
 	ctx.Header("Content-Description", " File Transfer")
 	ctx.Header("Content-Type", "application/octet-stream")
-	ctx.Header("Content-Disposition", `attachment; filename="' . basename($file) . '"'`)
+	ctx.Header("Content-Disposition", fmt.Sprintf(`attachment; filename="%s"`, fileInfo.Name()))
 	ctx.Header("Expires", "0")
 	ctx.Header("Cache-Control", "must-revalidate")
 	ctx.Header("Pragma", "public")

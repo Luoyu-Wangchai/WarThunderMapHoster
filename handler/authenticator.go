@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 	"thunder_hoster/config"
 	"time"
@@ -15,9 +16,19 @@ func PasswordAuthenticator(ctx *gin.Context) {
 
 	if passwd == config.Cfg.Password {
 		ValidTime = time.Now().Add(time.Duration(config.Cfg.ValidMin) * time.Minute)
-		ctx.String(http.StatusOK, "Verification has been passed.")
+		ctx.HTML(http.StatusOK, "message.tmpl", gin.H{
+			"title":       "Verification Successed",
+			"message":     "Verification Successed",
+			"description": fmt.Sprintf("Now you can visit %s/map , before %s", ctx.Request.Host, ValidTime.Format("2006-01-02 15:04:05")),
+			"color":       "green",
+		})
 	} else {
-		ctx.String(http.StatusOK, "Verification failed.")
+		ctx.HTML(http.StatusOK, "message.tmpl", gin.H{
+			"title":       "Verification Failed",
+			"message":     "Verification Failed",
+			"description": "Please try again",
+			"color":       "red",
+		})
 	}
 
 }

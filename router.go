@@ -18,8 +18,8 @@ func RouterSetup() *gin.Engine {
 	mapGroup := router.Group("/map")
 	mapGroup.Use(middleware.AccessControlMiddleware())
 	{
-		mapGroup.GET("/", handler.SendFile)
-		mapGroup.POST("/", handler.SendFile)
+		mapGroup.GET("/*path", handler.SendFile)
+		mapGroup.POST("/*path", handler.SendFile)
 	}
 
 	return router

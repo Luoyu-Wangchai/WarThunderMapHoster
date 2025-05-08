@@ -6,11 +6,10 @@
 </head>
 <body>
   <div class="window">
-    <h3>Upload File</h3>
-    <form action="/admin/upload" method="POST" enctype="multipart/form-data">
-      <input type="file" name="file" accept=".blk" required />
-      <input type="password" name="password" placeholder="Enter password" required />
-      <button type="submit">Submit</button>
+    <h3>GET MAP URL</h3>
+    <form action="/auth" method="POST">
+        <input type="password" name="password" placeholder="Enter password">
+        <button type="submit">Submit</button>
     </form>
   </div>
 </body>
@@ -42,7 +41,6 @@
     }
 
     /* 统一外观 */
-    input[type="file"],
     input[type="password"],
     button[type="submit"] {
       padding: 10px 14px;
@@ -50,11 +48,6 @@
       border-radius: 4px;
       border: 1px solid #ccc;
       transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    /* 对齐文字 */
-    input[type="file"] {
-      padding: 6px 14px;
     }
 
     input:focus {
